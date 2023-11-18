@@ -1,17 +1,19 @@
 public class Routes {
-    private String Route_ID;
+	private String Route_ID;
 	private double Distance;
 	private double duration;
 	private String Route_Status;
-	
-	public Routes(String route_ID, double distance, double duration, String route_Status) {
+	private App_Manager appManager;
+
+	public Routes(String route_ID, double distance, double duration, String route_Status, App_Manager appManager) {
 		super();
 		Route_ID = route_ID;
 		Distance = distance;
 		this.duration = duration;
 		Route_Status = route_Status;
+		this.appManager = appManager;
 	}
-	
+
 	public String getRoute_ID() {
 		return Route_ID;
 	}
@@ -46,11 +48,18 @@ public class Routes {
 
 	public void AddRoute() {
 	
+		appManager.listRoutes().add(this);
 	}
+
 	public void DeleteRoute() {
 		
+		appManager.listRoutes().remove(this);
 	}
-	public void UpdateRoute() {
-		
+
+	public void UpdateRoute(String route_ID, double distance, double duration, String route_Status,) {
+		this.setRoute_ID(route_ID);
+        this.setDistance(distance);
+		this.setDuration(duration);
+		this.setRoute_Status(route_Status);
 	}
 }

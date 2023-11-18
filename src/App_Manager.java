@@ -5,7 +5,6 @@ public class App_Manager {
     private String reporting_line;
     private String Routes;
     private String passenger;
-
 public App_Manager(String app_Manager_ID, String accesss_level, String reporting_line, String routes,
 		String passenger) {
 	super();
