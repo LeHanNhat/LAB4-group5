@@ -1,8 +1,11 @@
-public class Bus {
+
+import java.util.*;
+public class Bus implements Escape {
     private String Bus_ID;
 	private String Model;
 	private int seating_capacity;
 	private int standing_capacity;
+	private Routes route;
 	public Bus(String bus_ID, String model, int seating_capacity, int standing_capacity) {
 		super();
 		this.Bus_ID = bus_ID;
@@ -10,14 +13,25 @@ public class Bus {
 		this.seating_capacity = seating_capacity;
 		this.standing_capacity = standing_capacity;
 	}
-	public void addBus() {
-		
+	public Bus(String bus_ID, String model, int seating_capacity, int standing_capacity,Routes route) {
+		super();
+		this.Bus_ID = bus_ID;
+		this.Model = model;
+		this.seating_capacity = seating_capacity;
+		this.standing_capacity = standing_capacity;
+		this.route=route;
 	}
-	public void DeleteBus() {
-		
+	public void addBus(Routes route) {
+		System.out.println("add route:"+route.getRoute_ID());
+		this.route=route;
 	}
-	public void UpdateBus() {
-		
+	public void DeleteBus(Routes route) {
+		System.out.println("delete route:"+route.getRoute_ID());
+		this.route=null;
+	}
+	public void UpdateBus(Routes route) {
+		System.out.println("update new route:"+route.getRoute_ID());
+		this.route=route;
 	}
 	public String getBus_ID() {
 		return Bus_ID;
