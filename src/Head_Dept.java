@@ -4,10 +4,6 @@ public class Head_Dept {
     private String Event;
     private String participants;
    
-    public Head_Dept() {
-   
-    }
-   
    
     public Head_Dept(String dept_Id, String dept_name, String Event, String participants) {
         this.dept_Id = dept_Id;
