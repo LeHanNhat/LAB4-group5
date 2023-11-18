@@ -1,11 +1,13 @@
+import java.util.ArrayList;
+
 public class Head_Dept {
     private String dept_Id;
     private String dept_name;
     private String Event;
-    private String participants;
+    private ArrayList<String> participants;
    
    
-    public Head_Dept(String dept_Id, String dept_name, String Event, String participants) {
+    public Head_Dept(String dept_Id, String dept_name, String Event, ArrayList<String> participants) {
         this.dept_Id = dept_Id;
         this.dept_name = dept_name;
         this.Event = Event;
@@ -36,13 +38,15 @@ public class Head_Dept {
        Event = event;
    }
    
-   public String getParticipants() {
-       return participants;
-   }
+   public ArrayList<String> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(ArrayList<String> participants) {
+        this.participants = participants;
+    }
    
-   public void setParticipants(String participants) {
-       this.participants = participants;
-   }
+   
    
    public void ListEvent() {
         
@@ -53,10 +57,19 @@ public class Head_Dept {
     public void DeleteBooking() {
         
     }
-    public void UpdateParticipants() {
+    public void AddParticipants() {
         
     }
+    public void addEvent() {
+
+    }
+    public void deleteParticipants() {
+        
+    }
+
     public void UpdateEvent() {
         
     }
+
+    
 }
