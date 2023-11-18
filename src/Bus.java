@@ -1,6 +1,6 @@
 
 import java.util.*;
-public class Bus implements Escape {
+public class Bus  {
     private String Bus_ID;
 	private String Model;
 	private int seating_capacity;
