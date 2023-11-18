@@ -1,42 +1,50 @@
-public class App_Manager {
+import java.util.ArrayList;
 
-    private String App_Manager_ID;
+public class App_Manager {
+    public ArrayList<User> listofPassenger;
+    public ArrayList<Routes> listofRoutesAvailable;
+    private int App_Manager_ID;
     private String accesss_level;
     private String reporting_line;
-    private String Routes;
-    private String passenger;
+    
 
-public App_Manager(String app_Manager_ID, String accesss_level, String reporting_line, String routes,
-		String passenger) {
-	super();
+public App_Manager(int app_Manager_ID, String accesss_level, String reporting_line,ArrayList<User> listofPassenger,ArrayList<Routes> listofRoutesAvailable) {
+
 	this.App_Manager_ID = app_Manager_ID;
 	this.accesss_level = accesss_level;
 	this.reporting_line = reporting_line;
-	this.Routes = routes;
-	this.passenger = passenger;
+	this.listofPassenger=listofPassenger;
+    this.listofRoutesAvailable=listofRoutesAvailable;
 }
-
-    public void listPassenger() {
-
+    // public void addPassenger(User user) {
+    //     listofPassenger.add(user);
+    // }
+    // public void listPassenger() {
+    //     for (int i=0; i<listofPassenger.size(); i++) {
+    //         System.out.println(listofPassenger.get(i)+"\n");
+    //     }
+    // }
+    // chưa đủ đi kiện hiện thực
+    public void addRoutes(Routes routes) {
+        listofRoutesAvailable.add(routes);
     }
-
     public void listRoutes() {
-
+        for (int i=0; i<listofRoutesAvailable.size(); i++) {
+            System.out.println(listofRoutesAvailable.get(i)+"\n");
+        }
     }
 
-    public void UpdateRoutes() {
-
+    public void UpdateRoutes(int route_ID,double distance, double duration, String route_Status) {
+        listofRoutesAvailable.get(route_ID).UpdateRoute(route_ID, distance, duration, route_Status);
     }
 
-    public void UpdatePassengers() {
+    
 
+    public void DeleteRoutes(int id) {
+        listofRoutesAvailable.remove(id);
     }
 
-    public void DeleteRoutes() {
-
-    }
-
-    public void DeletePassenger() {
-
+    public void DeletePassenger(int id) {
+        listofPassenger.remove(id);
     }
 }

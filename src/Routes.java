@@ -1,22 +1,26 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Routes {
-    private String Route_ID;
+    private int Route_ID;
 	private double Distance;
 	private double duration;
 	private String Route_Status;
+    private ArrayList<Routes> listofRoutes;
 	
-	public Routes(String route_ID, double distance, double duration, String route_Status) {
-		super();
-		Route_ID = route_ID;
-		Distance = distance;
+	public Routes(int route_ID, double distance, double duration, String route_Status) {
+		
+		this.Route_ID = route_ID;
+		this.Distance = distance;
 		this.duration = duration;
-		Route_Status = route_Status;
+		this.Route_Status = route_Status;
 	}
 	
-	public String getRoute_ID() {
+	public int getRoute_ID() {
 		return Route_ID;
 	}
 
-	public void setRoute_ID(String route_ID) {
+	public void setRoute_ID(int route_ID) {
 		Route_ID = route_ID;
 	}
 
@@ -44,13 +48,20 @@ public class Routes {
 		Route_Status = route_Status;
 	}
 
-	public void AddRoute() {
-	
+	public void AddRoute(Routes routes) {
+        listofRoutes.add(routes);
 	}
-	public void DeleteRoute() {
-		
+	public void DeleteRoute(int id) {
+		listofRoutes.remove(id);
 	}
-	public void UpdateRoute() {
-		
+	public void UpdateRoute(int  id,double distance, double duration, String route_Status) {
+		if (listofRoutes.contains(id)) {
+           
+            listofRoutes.get(id).setDistance(distance);
+            listofRoutes.get(id).setDuration(duration);
+            listofRoutes.get(id).setRoute_Status(route_Status);
+        } else {
+            System.out.println("error");
+        }
 	}
 }
