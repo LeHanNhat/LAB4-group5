@@ -3,7 +3,7 @@ public class Bus {
 	private String Model;
 	private int seating_capacity;
 	private int standing_capacity;
-	public BUS(String bus_ID, String model, int seating_capacity, int standing_capacity) {
+	public Bus(String bus_ID, String model, int seating_capacity, int standing_capacity) {
 		super();
 		this.Bus_ID = bus_ID;
 		this.Model = model;
