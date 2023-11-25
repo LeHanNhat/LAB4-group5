@@ -1,124 +1,134 @@
+
+import java.util.Scanner;
+
 public class User {
-	private String user_Id;
 
-	private String first_Name;
-
-	private String last_Name;
-
+	private String UserID;
+	private String FirstName;
+	private String LastName;
 	private String Email;
+	private String Password;
+	private static String storedPassword;
+	private static String storedEmail;
+	private static String storedFirstName;
+	private static String storedLastName;
 
-	private String passWord;
-
-	public User(String user_Id, String first_Name, String last_Name, String email, String password) {
-		this.user_Id = user_Id;
-		this.first_Name = first_Name;
-		this.last_Name = last_Name;
+	public User(String userID, String firstName, String lastName, String email, String password) {
+		this.UserID = userID;
+		this.FirstName = firstName;
+		this.LastName = lastName;
 		this.Email = email;
-		this.passWord = password;
+		this.Password = password;
 	}
 
-	public User(String user_Id, String password) {
-		this.user_Id = user_Id;
-		this.passWord = password;
-		login(user_Id, password);
-	}
-	// public void register(String user_Id) {
-	// // kiểm tra user id đã có chưa => need database
-	// // dùng try catch
-	// // nếu có thông báo đã có và hỏi người dùng có muốn tạo  mới không hoặc ngư
-	//  dùng quên mk
-	// // nếu không sẽ 
-	// }
+	public void Register() {
+		Scanner scanner = new Scanner(System.in);
 
-	private void login(String user_Id, String password) {
-		// kiểm tra thông tin login => need database
-		// Dùng try
-		// tạo connection
-		// kiểm tra thông tin
-		// lấy thông tin về 
-		// this.user_Id = user_Id;
-		// this.first_Name = first_Name;
-		// this.last_Name = last_Name;
-		// this.Email = email;
-		// this.passWord = password;
+		System.out.println("User registered successfully!");
+		System.out.println("User Registration:");
+
+		System.out.print("Enter First Name: ");
+		String firstName = scanner.nextLine();
+
+		System.out.print("Enter Last Name: ");
+		String lastName = scanner.nextLine();
+
+		System.out.print("Enter Email: ");
+		String email = scanner.nextLine();
+
+		System.out.print("Enter Password: ");
+		String password = scanner.nextLine();
+
+		System.out.println("User Registered Successfully:");
+		System.out.println("First Name: " + firstName);
+		System.out.println("Last Name: " + lastName);
+		System.out.println("Email: " + email);
+		System.out.println("Password: " + password);
+
 	}
 
-	public void resetPassWord(String user_Id) {
-		boolean checkUserID = false;
-		// B1: kiem tra userID đã có chưa
-		try {
-			// tạo kết nối tới db
-			// if (check userID có trong database)
-			// checkUserID = true;
-		} catch (Exception e) {
-			// đưa ra lỗi nếu kết nối có vấn đề
-		}
-		// 1 đã có => hỏi mk mới lưu vào => nhập lại mk mới
-		// if checkUserId == true
-		// String newPass;
-		// system.out.println("Enter your new password"):
-		// newPass = sc.next();
-		// System.out.println("Enter your new password again")
-		// If (newPass.equal(sc.next()))
-		try {
-			// tạo connect
-			// thực hiện update pass trong db
-		} catch (Exception e) {
-			// đưa ra lỗi nếu kết nối có vấn đề
+	public void Login() {
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.println("User Login:");
+
+		System.out.print("Enter Email: ");
+		String email = scanner.nextLine();
+
+		System.out.print("Enter Password: ");
+		String password = scanner.nextLine();
+
+		if (checkCredentials(email, password)) {
+			System.out.println("Login successful!");
+		} else {
+			System.out.println("Login failed. Invalid input!!!");
 		}
 	}
 
-	// public String getUser_Id() {
-	// return user_Id;
-	// }
-
-	// public void setUser_Id(String user_Id) {
-	// this.user_Id = user_Id;
-	// }
-	// get set UserId không cần thiết userID sẽ dùng như primary key trong db nên k
-	// ông được phép sửa
-
-	public String getFirst_Name() {
-		return first_Name;
-
+	private static boolean checkCredentials(String email, String password) {
+		return email.equals(storedEmail) && password.equals(storedPassword);
 	}
 
-	public void setFirst_Name(String first_Name) {
-		this.first_Name = first_Name;
+	public void UpdateProfile() {
+		Scanner scanner = new Scanner(System.in);
 
+        System.out.println("User Profile Update:");
+
+        System.out.print("Enter New First Name (leave blank to keep current): ");
+        String newFirstName = scanner.nextLine();
+        if (!newFirstName.isEmpty()) {
+            storedFirstName = newFirstName;
+        }
+
+        System.out.print("Enter New Last Name (leave blank to keep current): ");
+        String newLastName = scanner.nextLine();
+        if (!newLastName.isEmpty()) {
+            storedLastName = newLastName;
+        }
+
+        System.out.print("Enter New Email (leave blank to keep current): ");
+        String newEmail = scanner.nextLine();
+        if (!newEmail.isEmpty()) {
+            storedEmail = newEmail;
+        }
+
+        System.out.print("Enter New Password (leave blank to keep current): ");
+        String newPassword = scanner.nextLine();
+        if (!newPassword.isEmpty()) {
+            storedPassword = newPassword;
+        }
+
+        System.out.println("User Profile Updated Successfully:");
+        System.out.println("First Name: " + storedFirstName);
+        System.out.println("Last Name: " + storedLastName);
+        System.out.println("Email: " + storedEmail);
+        System.out.println("Password: " + storedPassword);
+		
 	}
 
-	public String getLast_Name() {
-		return last_Name;
+	public void ResetPassword() {
 
+		Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Password Reset:");
+
+        System.out.print("Enter your Email: ");
+        String userEmail = scanner.nextLine();
+
+        if (userEmail.equals(storedEmail)) {
+            String newPassword = generateTemporaryPassword();
+
+            storedPassword = newPassword;
+
+            System.out.println("Password reset successful! Your new temporary password is: " + newPassword);
+        } else {
+            System.out.println("Password reset failed. Invalid email.");
+        }
+
+    }
+
+    private static String generateTemporaryPassword() {
+        return "newTemporaryPassword123";
 	}
 
-	public void setLast_Name(String last_Name) {
-		this.last_Name = last_Name;
-
-	}
-
-	public String getEmail() {
-		return Email;
-
-	}
-
-	public void setEmail(String email) {
-		Email = email;
-
-	}
-
-	public String getPassWord() {
-		return passWord;
-
-	}
-
-	public void setPassWord(String passWord) {
-		this.passWord = passWord;
-
-	}
 }
-
-// các hàm get set sẽ dùng dữ liệu lấy về thông qua hàm login 
-// hàm login sẽ thông báo thành công và lấy dữ liệu lưu vào các var
-// 
